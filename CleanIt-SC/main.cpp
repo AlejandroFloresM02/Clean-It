@@ -1,4 +1,5 @@
 #include "mbed.h"
+<<<<<<< HEAD
 #include <cstudio>
 #include <studio.h>
 #include "delayTPM.h"
@@ -39,5 +40,16 @@ int main()
     keypad_init();
     NVIC->ISER[0] |= 0x40000000; /* enable INT30 (bit 30 of ISER[0]) */
     __enable_irq(); /* global enable IRQs */
+=======
+#include <MKL25Z4.h>
+#include"Headers/proximity.h"
+#include "Headers/delayTPM0.h"
+#include<cstdio>
+ 
+// main() runs in its own thread in the OS
+int main(){ 
+    while (true) {
+    }
+>>>>>>> 8da2cb2af7dee9bb8e4cbb197922c918fab12f5f
 }
 
