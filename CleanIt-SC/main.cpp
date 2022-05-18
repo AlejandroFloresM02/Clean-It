@@ -1,19 +1,17 @@
-#include "mbed.h"
-<<<<<<< HEAD
-#include <cstudio>
-#include <studio.h>
-#include "delayTPM.h"
-#include "lcd.h" 
+
+#include "MKL25Z4.h"
+#include <cstdio>
+#include <stdio.h>
+#include "delayTPM0.h"
+#include "lcd.h"
 #include "keypad.h"
-#include <math.h>
-#include <MKL25Z4.h>
+#include "math.h"
 
-
-
+bool start = false;
 // main() runs in its own thread in the OS
 int main()
 {
-    char menu_str[] = "SELECT MODE SELECT MODE\nAuto[1] BR[2] Pattern[3]";
+    char menu_str[] = "SELECT MODE\nA1 B2 P3 ";
     char alarm_str[] = "Select a valid option";
     char Auto_str[] = "Autonoumus Mode";
     char BlueCon_str[] = "BT Control Mode";
@@ -40,16 +38,15 @@ int main()
     keypad_init();
     NVIC->ISER[0] |= 0x40000000; /* enable INT30 (bit 30 of ISER[0]) */
     __enable_irq(); /* global enable IRQs */
-=======
-#include <MKL25Z4.h>
-#include"Headers/proximity.h"
-#include "Headers/delayTPM0.h"
-#include<cstdio>
- 
-// main() runs in its own thread in the OS
-int main(){ 
-    while (true) {
-    }
->>>>>>> 8da2cb2af7dee9bb8e4cbb197922c918fab12f5f
-}
 
+    while(1){
+        if(!start) {
+            LCD_command(1);
+            LCD_command(0x80);
+            send_string(menu_str,21);
+            tpm_delayMs(50);
+        }
+    }
+
+
+}
